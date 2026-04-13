@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carlos Vitor — Desenvolvedor de Software</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="canvas-bg"></canvas>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo"><span></span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#habilidades">Skills</a></li>
+    <li><a href="#formacao">Formação</a></li>
+    <li><a href="#diferenciais">Diferenciais</a></li>
+  </ul>
+  <a href="https://wa.me/5582993416833" target="_blank" rel="noopener" class="nav-cta">Contato</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <h1 class="hero-name">
+          Carlos<br><span class="highlight">Vitor</span><br>Ferreira Ivo
+        </h1>
+        <p class="hero-sub">
+          Desenvolvedor de software apaixonado por tecnologia, com mais de
+          <strong>2.000h de formação técnica</strong>. Foco em
+          <strong>TypeScript, React e testes automatizados</strong>.
+          Busco crescer na área e contribuir em projetos reais.
+          Código limpo. Sempre.
+        </p>
+        <div class="hero-btns">
+          <a href="https://wa.me/5582993416833" target="_blank" rel="noopener" class="btn-primary">
+            💬 Fale comigo no WhatsApp
+          </a>
+          <a href="#habilidades" class="btn-outline">Ver habilidades</a>
+        </div>
+        <div class="hero-scroll">
+          <div class="scroll-line"></div>
+          <span>Scroll para explorar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-text reveal">
+        <div class="section-label">Quem sou</div>
+        <h2 class="section-title">Dev júnior com base<br>técnica sólida</h2>
+        <p>
+          Tenho 18 anos, sou de Maceió — AL, e estou cursando
+          <strong>Engenharia de Software</strong> (1º período). Concluí o
+          <strong>Curso Técnico em Informática no SENAI</strong> em 2025,
+          junto com o Ensino Médio.
+        </p>
+        <p>
+          Durante a formação acumulei mais de <strong>2.000 horas técnicas</strong>
+          cobrindo desenvolvimento web moderno, banco de dados, testes automatizados
+          e design de interfaces.
+        </p>
+        <p>
+          Sou obcecado por <strong>código limpo e bem arquitetado</strong>. Escrevo
+          testes, documento o necessário e trato performance como requisito —
+          não como opcional.
+        </p>
+      </div>
+      <div class="sobre-stats reveal reveal-delay-2">
+        <div class="stat-card">
+          <div class="stat-num">2.000+</div>
+          <div class="stat-desc">horas de formação técnica em TI</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10+</div>
+          <div class="stat-desc">tecnologias com proficiência real</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2025</div>
+          <div class="stat-desc">SENAI + Ensino Médio concluídos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Stack técnica</div>
+      <h2 class="section-title">Habilidades & Tecnologias</h2>
+    </div>
+    <div class="skills-grid">
+
+      <!-- Avançado -->
+      <div class="skill-group reveal reveal-delay-1">
+        <div class="skill-group-header">
+          <span class="skill-level-badge level-advanced">Avançado</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Jest</span>
+          <span class="skill-tag">Cypress</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Canvas API</span>
+          <span class="skill-tag">Trello</span>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>JavaScript / TypeScript</span><span>90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.9" data-width="0.9"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>HTML &amp; CSS</span><span>92%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.92" data-width="0.92"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Jest &amp; Cypress</span><span>85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:0.85" data-width="0.85"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Intermediário -->
+      <div class="skill-group reveal reveal-delay-2">
+        <div class="skill-group-header">
+          <span class="skill-level-badge level-intermediate">Intermediário</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Next.js</span>
+          <span class="skill-tag">Python</span>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>React</span><span>68%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.68"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Node.js / Next.js</span><span>62%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.62"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Python</span><span>60%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.6"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Básico + Iniciante -->
+      <div class="skill-group reveal reveal-delay-3">
+        <div class="skill-group-header">
+          <span class="skill-level-badge level-basic">Básico</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">C++</span>
+        </div>
+        <div class="skill-bar-wrap">
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>C / C++</span><span>35%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="0.35"></div></div>
+          </div>
+        </div>
+        <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--border)">
+          <div class="skill-group-header">
+            <span class="skill-level-badge level-beginner">Iniciante</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORMAÇÃO -->
+<section id="formacao">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Trajetória</div>
+      <h2 class="section-title">Formação Acadêmica</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item reveal reveal-delay-1">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2026 — Em andamento</div>
+        <div class="tl-title">Bacharelado em Engenharia de Software</div>
+        <div class="tl-org">Cursando — 1º período</div>
+        <div class="tl-body">
+          <ul>
+            <li>Fundamentos de engenharia, algoritmos e estruturas de dados.</li>
+            <li>Metodologias de desenvolvimento e arquitetura de sistemas.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal reveal-delay-2">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2025</div>
+        <div class="tl-title">Ensino Médio</div>
+        <div class="tl-org">Concluído — Maceió, AL</div>
+        <div class="tl-body">
+          <ul>
+            <li>Concluído concomitante ao curso técnico no SENAI.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal reveal-delay-3">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2024 — 2025</div>
+        <div class="tl-title">Curso Técnico em Informática</div>
+        <div class="tl-org">SENAI — Maceió, AL</div>
+        <div class="tl-body">
+          <ul>
+            <li>Mais de 2.000 horas em desenvolvimento de software, redes, banco de dados e infraestrutura.</li>
+            <li>Desenvolvimento web com HTML, CSS, JavaScript e MySQL.</li>
+            <li>Boas práticas de programação, versionamento com Git e metodologias de projeto.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Por que me contratar</div>
+      <h2 class="section-title">Diferenciais Técnicos</h2>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card reveal reveal-delay-1">
+        <div class="diff-icon">🧪</div>
+        <div class="diff-title">Testes desde o início</div>
+        <div class="diff-desc">Escrevo testes unitários e end-to-end com Jest e Cypress. Cultura de qualidade é hábito, não afterthought.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-2">
+        <div class="diff-icon">🔷</div>
+        <div class="diff-title">TypeScript como padrão</div>
+        <div class="diff-desc">Uso TypeScript por default. Tipagem estática, menos bugs em runtime, código mais maintível e refactorável.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-3">
+        <div class="diff-icon">🎨</div>
+        <div class="diff-title">Design antes de código</div>
+        <div class="diff-desc">Domínio de Figma para prototipar interfaces antes de implementar. Fidelidade visual é requisito.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-1">
+        <div class="diff-icon">⚡</div>
+        <div class="diff-title">Performance como requisito</div>
+        <div class="diff-desc">Trato performance como parte do desenvolvimento, não como otimização pós-entrega.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-2">
+        <div class="diff-icon">🌐</div>
+        <div class="diff-title">Full-stack awareness</div>
+        <div class="diff-desc">Node.js e Next.js no intermediário. Entendo a stack de ponta a ponta, do banco ao componente React.</div>
+      </div>
+      <div class="diff-card reveal reveal-delay-3">
+        <div class="diff-icon">📚</div>
+        <div class="diff-title">Inglês técnico</div>
+        <div class="diff-desc">Leitura de documentação fluente, consumo de conteúdo em inglês e comunicação básica-intermediária.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IDIOMAS -->
+<section id="idiomas">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Comunicação</div>
+      <h2 class="section-title">Idiomas</h2>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card reveal reveal-delay-1">
+        <div class="lang-flag">🇧🇷</div>
+        <div class="lang-name">Português</div>
+        <div class="lang-level">Nativo</div>
+        <div class="lang-desc">Comunicação oral e escrita completa.</div>
+      </div>
+      <div class="lang-card reveal reveal-delay-2">
+        <div class="lang-flag">🇺🇸</div>
+        <div class="lang-name">Inglês</div>
+        <div class="lang-level">Intermediário</div>
+        <div class="lang-desc">Leitura técnica fluente, escrita e fala básica-intermediária.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="container">
+    <div class="cta-box reveal">
+      <div class="section-label">Vamos conversar</div>
+      <h2 class="cta-title">
+        Pronto para o<br>
+        <span style="background:linear-gradient(135deg,var(--cyan),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+          próximo nível
+        </span>
+      </h2>
+      <p class="cta-sub">
+        Interessado em tecnologia, desenvolvimento de software e em crescer na área. Bora trocar ideia?
+      </p>
+      <a href="https://wa.me/5582993416833" target="_blank" rel="noopener" class="btn-primary">
+        💬 Conversar no WhatsApp
+      </a>
+      <div class="contact-links">
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">✉️</span> E-mail
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">💼</span> LinkedIn
+        </a>
+        <a href="#" class="contact-link">
+          <span class="contact-link-icon">🐙</span> GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-info">
+    <span class="footer-item"><span style="color:var(--cyan)">📍</span> Maceió, Alagoas</span>
+    <span class="footer-sep">|</span>
+    <span class="footer-item"><span style="color:var(--cyan)">🌐</span> Inglês intermediário</span>
+    <span class="footer-sep">|</span>
+    <span class="footer-item"><span style="color:var(--cyan)">🎓</span> Eng. Software · 1º período</span>
+  </div>
+  Feito com <span>♥</span> por Carlos Vitor Ferreira Ivo · 2026
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
