@@ -1,159 +1,109 @@
-// ── CURSOR PERSONALIZADO ──
-(function initCursor() {
-  const cursor = document.getElementById('cursor');
-  const ring   = document.getElementById('cursor-ring');
-  if (!cursor || !ring) return;
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let width, height;
+let particles = [];
+const mouse = { x: null, y: null, radius: 180 };
 
-  let mx = 0, my = 0, rx = 0, ry = 0;
+window.addEventListener('mousemove', (e) => {
+    mouse.x = e.x;
+    mouse.y = e.y;
+});
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top  = my + 'px';
-  });
+window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    initParticles();
+});
 
-  (function animRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(animRing);
-  })();
-
-  document.querySelectorAll('a, button, .skill-tag, .diff-card, .stat-card, .lang-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { ring.style.width = '54px'; ring.style.height = '54px'; });
-    el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; });
-  });
-})();
-
-// ── PARTÍCULAS NO CANVAS ──
-(function initParticles() {
-  const canvas = document.getElementById('canvas-bg');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  class Particle {
-    constructor() { this.reset(); }
-    reset() {
-      this.x       = Math.random() * canvas.width;
-      this.y       = Math.random() * canvas.height;
-      this.size    = Math.random() * 1.5 + 0.3;
-      this.speedX  = (Math.random() - 0.5) * 0.3;
-      this.speedY  = (Math.random() - 0.5) * 0.3;
-      this.opacity = Math.random() * 0.5 + 0.1;
-      this.color   = Math.random() > 0.7 ? '#FFB800' : '#00E5FF';
+function initParticles() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    particles = [];
+    const numParticles = (width * height) / 9000;
+    
+    for (let i = 0; i < numParticles; i++) {
+        const size = (Math.random() * 2) + 0.5;
+        const x = Math.random() * (width - size * 2) + size * 2;
+        const y = Math.random() * (height - size * 2) + size * 2;
+        const dirX = (Math.random() * 1.5) - 0.75;
+        const dirY = (Math.random() * 1.5) - 0.75;
+        const color = '#0ea5e9';
+        particles.push({ x, y, dirX, dirY, size, color });
     }
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-        this.reset();
-      }
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle   = this.color;
-      ctx.globalAlpha = this.opacity;
-      ctx.fill();
-    }
-  }
+}
 
-  const particles = [];
-  for (let i = 0; i < 120; i++) particles.push(new Particle());
+function animateParticles() {
+    requestAnimationFrame(animateParticles);
+    ctx.clearRect(0, 0, width, height);
 
-  function loop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // linhas de conexão entre partículas próximas
     for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx   = particles[i].x - particles[j].x;
-        const dy   = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle  = '#00E5FF';
-          ctx.globalAlpha  = (1 - dist / 100) * 0.08;
-          ctx.lineWidth    = 0.5;
-          ctx.stroke();
+        let p = particles[i];
+        
+        p.x += p.dirX;
+        p.y += p.dirY;
+
+        if (p.x > width || p.x < 0) p.dirX = -p.dirX;
+        if (p.y > height || p.y < 0) p.dirY = -p.dirY;
+
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouse.radius) {
+            if (mouse.x < p.x && p.x < width - p.size * 10) p.x += 3;
+            if (mouse.x > p.x && p.x > p.size * 10) p.x -= 3;
+            if (mouse.y < p.y && p.y < height - p.size * 10) p.y += 3;
+            if (mouse.y > p.y && p.y > p.size * 10) p.y -= 3;
         }
-      }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = p.color;
+        ctx.fill();
     }
+    connectParticles();
+}
 
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(loop);
-  }
-  loop();
-})();
+function connectParticles() {
+    let opacityValue = 1;
+    for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+            const distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) +
+                             ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+            if (distance < (width/8) * (height/8)) {
+                opacityValue = 1 - (distance / 18000);
+                ctx.strokeStyle = `rgba(14, 165, 233, ${opacityValue})`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(particles[a].x, particles[a].y);
+                ctx.lineTo(particles[b].x, particles[b].y);
+                ctx.stroke();
+            }
+        }
+    }
+}
 
-// ── SCROLL REVEAL ──
-(function initReveal() {
-  const els = document.querySelectorAll('.reveal');
-  if (!els.length) return;
+initParticles();
+animateParticles();
 
-  const observer = new IntersectionObserver(entries => {
+const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('visible');
-
-      // anima skill bars dentro do elemento revelado
-      entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-        setTimeout(() => bar.classList.add('animated'), 300);
-      });
-
-      observer.unobserve(entry.target);
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
     });
-  }, { threshold: 0.12 });
+}, observerOptions);
 
-  els.forEach(el => observer.observe(el));
-})();
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// ── SKILL BARS (fallback para barras fora de .reveal) ──
-(function initSkillBars() {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      setTimeout(() => entry.target.classList.add('animated'), 300);
-      observer.unobserve(entry.target);
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetElement = document.querySelector(this.getAttribute('href'));
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     });
-  }, { threshold: 0.3 });
-
-  document.querySelectorAll('.skill-bar-fill').forEach(bar => observer.observe(bar));
-})();
-
-// ── NAV: opacidade no scroll ──
-(function initNavScroll() {
-  const nav = document.getElementById('nav');
-  if (!nav) return;
-  window.addEventListener('scroll', () => {
-    nav.style.background = window.scrollY > 40
-      ? 'rgba(8,12,20,0.95)'
-      : 'rgba(8,12,20,0.7)';
-  }, { passive: true });
-})();
-
-// ── TILT 3D nos cards ──
-(function initTilt() {
-  document.querySelectorAll('.stat-card, .diff-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width  - 0.5;
-      const y = (e.clientY - rect.top)  / rect.height - 0.5;
-      card.style.transform = `perspective(600px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(4px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-})();
+});
